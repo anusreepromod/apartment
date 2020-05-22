@@ -42,7 +42,28 @@ static Future<Response> doLogin(body) async{
    print (response);
  return response;
   }
+
+
+  
+  static Future<Response> sector(body) async{
+  final url = "http://visthara.techtist.com/app_control";
+  
+  
+ Response response = await API.post(url,body);
+   print (response);
+ return response;
+  }
+
+static Future<Response> plots(body) async{
+  final url = "http://visthara.techtist.com/app_control";
+  
+  
+ Response response = await API.post(url,body);
+   print (response);
+ return response;
+  }
 }
+
 
   
 

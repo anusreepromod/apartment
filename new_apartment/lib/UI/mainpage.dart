@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import 'announcement/announcement.dart';
+import 'drawer/drawer.dart';
 import 'feedback/feedback.dart';
 
 
@@ -27,7 +28,7 @@ class _MainpageState extends State<Mainpage> with SingleTickerProviderStateMixin
     
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: Drawer(),
+      drawer: Drawers(),
     appBar: AppBar(
        backgroundColor: Colors.black12,
        title: Text("Visthara Community"),

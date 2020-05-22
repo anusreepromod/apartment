@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:new_apartment/apicall/api.dart';
 import 'package:new_apartment/apicall/services.dart';
@@ -12,28 +13,70 @@ class Announcement extends StatefulWidget {
 }
 
 class _AnnouncementState extends State<Announcement> {
-  List<dynamic>announce;
-      @override
-      void initState(){
-        super.initState();
-        announcements();
-        announce=List<dynamic>();
-        List value;
-        announce = value;
-        this.setState(() { });
-      }
+ 
+      // @override
+      // void initState(){
+      //   super.initState();
+      //   announcements();
+        
+      //         }
   @override
   
   Widget build(BuildContext context) {
         return Scaffold(
-      body: Container(
-        child: Container(
+      body: FutureBuilder(
+        builder:(context, AsyncSnapshot snapshot){
+        switch (snapshot.connectionState){
+          case ConnectionState.waiting:
+          return Center(
+            child: Text("loading"),
+          );
+          break;
+          case ConnectionState.active:
+          if(snapshot.hasData){
+            final announce =snapshot.data;
+            return _getListView(announce);
+          }
+          break;
+          default:
+          Center(child: Text("loading"),);
+          break;
 
-       
+        }
 
-        )
-      )
+        },
+        future: _getannouncement(),
+        ),
+           
     );
+  }
+
+  _getListView(announce){
+    return ListView.builder(
+      itemBuilder: (context,index){
+        final announces = announce[index];
+        return _getRow(announces);
+      },
+      itemCount: announce.length,
+      );
+  }
+  Widget _getRow(announc){
+    final title = announc["title"];
+    final description = announc["description"];
+    return Container(
+      margin: EdgeInsets.all(10),
+      child: Column(
+        
+        children: <Widget>[
+          Text("Title: $title"),
+          Text("Description :$description"),
+          Divider(
+            color :Colors.grey,
+          )
+
+        ],)
+    );
+    
   }
 
 announcements() async{
@@ -45,13 +88,14 @@ final body = {
 	}
 };
 
-Services.announcement(body).then((results) async {
+await Services.announcement(body).then((results) async {
        switch (results.status) {
        case ServiceStatus.success:
         final announcementResult = Announcementmodel.fromJson(results.data);
-        //print(announcementResult.result.respData);
-        final value =announcementResult.result.respData;
-        print(value);
+        
+        print(announcementResult);
+        
+        // this.setState(() { });
         
                  break;
        case ServiceStatus.failure:
@@ -62,7 +106,11 @@ Services.announcement(body).then((results) async {
      });
 }
   
-    
+ Future <List<dynamic>> _getannouncement()async{
+   final announce = await announcements();
+  return announce;
+
+ }   
 }
 
 

@@ -1,8 +1,3 @@
-
-
-
-
-
 import 'package:new_apartment/UI/login/loginmodel.dart';
 
 class UserSession{

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:new_apartment/UI/login/loginpage.dart';
+import 'package:new_apartment/UI/mainpage.dart';
 import '../usersession/usersession.dart';
 
 
 class Drawers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final data =UserSession.shared.getUser();
+    //final data =UserSession.shared.getUser();
     return Container(
       child: Drawer(
 
@@ -31,9 +33,9 @@ class Drawers extends StatelessWidget {
   
                           leading: Icon(Icons.account_circle),
   
-                          title: Text(data.name),
+                          title: Text("data.name"),
   
-                          subtitle: Text(data.emailId),
+                          subtitle: Text("data.emailId"),
   
                         ),
   
@@ -51,13 +53,13 @@ class Drawers extends StatelessWidget {
   
                     onTap: () {
   
-                      // Navigator.push(
+                      Navigator.push(
   
-                      //   context,
+                        context,
   
-                      //   MaterialPageRoute(builder: (context) => Welcome()),
+                        MaterialPageRoute(builder: (context) => Mainpage()),
   
-                      // );
+                      );
   
                     },
   
@@ -92,9 +94,7 @@ class Drawers extends StatelessWidget {
                     title: Text("Settings"),
   
                     leading: Icon(Icons.settings),
-  
-  
-  
+    
                     onTap: () {
   
                       // Navigator.push(
@@ -119,21 +119,17 @@ class Drawers extends StatelessWidget {
   
                     title: Text("Logout"),
   
-                    //trailing: Icon(Icons.keyboard_arrow_right),
+                    trailing: Icon(Icons.keyboard_arrow_right),
   
-  //              onTap: () {
+               onTap: () {
   
-  //                Navigator.push(
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => Loginpage()),
   
-  //                  context,
   
-  //                  MaterialPageRoute(builder: (context) => About()),
   
-  //
+                 );
   
-  //                );
-  
-  //              },
+               },
   
                   ),
   

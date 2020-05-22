@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:new_apartment/UI/custom/custombutton.dart';
 import 'package:new_apartment/UI/custom/inputbox.dart';
 import 'package:new_apartment/UI/registration/registrationpage.dart';
+import 'package:new_apartment/UI/sector/sectorpage.dart';
 import 'package:new_apartment/apicall/api.dart';
 import 'package:new_apartment/apicall/services.dart';
 
@@ -150,14 +151,14 @@ class _LoginpageState extends State<Loginpage> {
                   text: "Login",
                   color: Colors.blueAccent,
                   onPressed:(){
-                    setState(() {
-            _isLoading = true;
-          });
-                       logIn(mobileController.text, passwordController.text);
-                //       Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => Mainpage()),
-                // );
+          //           setState(() {
+          //   _isLoading = true;
+          // });
+          //              logIn(mobileController.text, passwordController.text);
+                      Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Mainpage()),
+                );
                   },
                 ),
                 SizedBox(
@@ -168,7 +169,7 @@ class _LoginpageState extends State<Loginpage> {
                   color: Colors.black,
                   onPressed:(){
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUppage()));
+                        MaterialPageRoute(builder: (context) => Sectorplot()));
                   },
                 ),
                 SizedBox(
